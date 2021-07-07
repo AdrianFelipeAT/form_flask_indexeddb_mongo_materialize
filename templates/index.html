@@ -1,0 +1,51 @@
+{% extends 'base/base_menu.html' %}
+
+{% block menu %}
+<a href="/inspeccion">
+    <div class="container col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="{{ url_for('static', filename='img/home.png') }}" width="100px">
+          <hr>
+          <h2>Inspeccion del punto</h2>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="/primeros-auxilios">
+    <div class="container col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="{{ url_for('static', filename='img/bolsa-de-primeros-auxilios.png') }}" width="100px">
+          <hr>
+          <h2>Primeros Auxilios</h2>
+        </div>
+      </div>
+    </div>
+  </a>
+  
+  <a href="/resumen">
+    <div class="container col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="{{ url_for('static', filename='img/cloud-computing.png') }}" width="100px">
+          <hr>
+          <h2>Sincronizar</h2>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="#">
+    <div class="container col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="{{ url_for('static', filename='img/business-report.png') }}" width="100px">
+          <hr>
+          <h2>Descargar reporte</h2>
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endblock %}

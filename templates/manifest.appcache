@@ -1,0 +1,5 @@
+CACHE MANIFEST
+#v0.0.2 chage
+
+CACHE:
+{{ url_for('static', filename='index.html') }}

@@ -1,0 +1,1130 @@
+{% extends 'base/base_inspeccion.html' %}
+
+{% block iniciales %}
+      <div class="row">
+        <div class="col-md-4 ml-auto mr-auto">
+          <div id="inputs">
+          <div class="row">
+            <div class="col-lg-12 col-sm-4">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">group</i>
+                    </span>
+                  </div>
+                  <input type="text" id="inspector" class="form-control" placeholder="Escribe aquí tu nombre">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-sm-4">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">group</i>
+                    </span>
+                  </div>
+                  <input type="text" id="punto" class="form-control" placeholder="Nombre del punto de Venta">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-sm-4">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">group</i>
+                    </span>
+                  </div>
+                  <input type="text" id="vendedor" class="form-control" placeholder="Nombre del vendedor">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-sm-4">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">group</i>
+                    </span>
+                  </div>
+                  <select name="cars" id="municipio" class="form-control">
+                    <option value="" selected disabled hidden>Municipio</option>
+                    <option value="Viterbo">Volvo</option>
+                    <option value="Villamaria">Saab</option>
+                    <option value="Victoria">Mercedes</option>
+                    <option value="Supía">Supía</option>
+                    <option value="Supía">San José</option>
+                    <option value="Supía">Samaná</option>
+                    <option value="Supía">Salamina</option>
+                    <option value="Supía">Risaralda</option>
+                    <option value="Supía">Riosucio</option>
+                    <option value="Supía">Pensilvania</option>
+                    <option value="Supía">Palestina</option>
+                    <option value="Supía">Pácora</option>
+                    <option value="Supía">Norcasia</option>
+                    <option value="Supía">Neira</option>
+                    <option value="Supía">Marulanda</option>
+                    <option value="Supía">Marquetalia</option>
+                    <option value="Supía">Marmato</option>
+                    <option value="Supía">Manzanares</option>
+                    <option value="Supía">Manizales</option>
+                    <option value="Supía">La merced</option>
+                    <option value="Supía">La dorada</option>
+                    <option value="Supía">Filadelfia</option>
+                    <option value="Supía">Chinchiná</option>
+                    <option value="Supía">Belalcázar</option>
+                    <option value="Supía">Aranzazu</option>
+                    <option value="Supía">Anserma</option>
+                    <option value="Supía">Aguadas</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        </div>
+      </div>
+
+
+  {% endblock %}
+
+
+
+  {% block iluminacion %}
+      <!-- Iluminación -->
+
+        <img src="{{ url_for('static', filename='img/iluminacion.png') }}" width="100px">
+        <h3 class="title">Iluminación</h3>
+        <h4>Se tiene un manteniemiento adecuado en las lámparas</h4>
+        
+        <div class="form-radio">
+          <label class="form-radio-label">
+            <input type="radio" id="cumpleiluminacion" name="iluminacionvalor" value="cumple">
+            <label for="cumpleiluminacion">Cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-radio-label">
+            <input type="radio" id="parcialiluminacion" name="iluminacionvalor" value="parcial">
+            <label for="parcialiluminacion">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-radio-label">
+            <input type="radio" id="nocumpleiluminacion" name="iluminacionvalor" value="nocumple">
+            <label for="nocumpleiluminacion">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-radio-label">
+            <input type="radio" id="noaplicailuminacion" name="iluminacionvalor" value="noaplica">
+            <label for="noaplicailuminacion">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="iluminacionobs"></textarea>
+        
+  {% endblock %}
+
+
+  {% block ruido %}
+      <!-- Ruido -->
+      <img src="{{ url_for('static', filename='img/ruido.png') }}" width="100px">
+      <h3 class="title">Ruido</h3>
+      <h4>Las áreas de trabajo cumplen con los niveles de confort de ruido</h4>
+      
+      <div class="form-radio">
+        <label class="form-radio-label">
+          <input type="radio" id="cumpleruido" name="ruidovalor" value="cumple">
+          <label for="cumpleruido">Cumple</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+        &nbsp;
+        <label class="form-radio-label">
+          <input type="radio" id="parcialruido" name="ruidovalor" value="parcial">
+          <label for="parcialruido">Cumple Parcial</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+        &nbsp;
+        <label class="form-radio-label">
+          <input type="radio" id="nocumpleruido" name="ruidovalor" value="nocumple">
+          <label for="nocumpleruido">No cumple</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+        &nbsp;
+        <label class="form-radio-label">
+          <input type="radio" id="noaplicaruido" name="ruidovalor" value="noaplica">
+          <label for="noaplicaruido">No aplica</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+      </div>
+      <br>
+      Observaciones:
+      <textarea class="form-control" id="ruidoobs"></textarea>
+
+        
+  {% endblock %}
+
+
+  {% block mecanico %}
+      <!-- Ruido -->
+      <img src="{{ url_for('static', filename='img/mecanico.jpg') }}" width="100px">
+      <h3 class="title">Mecánico</h3>
+      <h4>las herramientas de trabajo (uñas,grapadoras,perforadoras) son de buena calidad y se encuentran en buen estado</h4>
+      
+      <div class="form-radio">
+        <label class="form-radio-label">
+          <input type="radio" id="cumplemecanico" name="mecanicovalor" value="cumple">
+          <label for="cumplemecanico">Cumple</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+        &nbsp;
+        <label class="form-radio-label">
+          <input type="radio" id="parcialmecanico" name="mecanicovalor" value="parcial">
+          <label for="parcialmecanico">Cumple Parcial</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+        &nbsp;
+        <label class="form-radio-label">
+          <input type="radio" id="nocumplemecanico" name="mecanicovalor" value="nocumple">
+          <label for="nocumplemecanico">No cumple</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+        &nbsp;
+        <label class="form-radio-label">
+          <input type="radio" id="noaplicamecanico" name="mecanicovalor" value="noaplica">
+          <label for="noaplicamecanico">No aplica</label>
+          <span class="form-radio-sign">
+            <span class="radio"></span>
+          </span>
+        </label>
+      </div>
+      <br>
+      Observaciones:
+      <textarea class="form-control" id="mecanicoobs"></textarea>
+        
+  {% endblock %}
+
+
+  {% block electrico %}
+   <!--ELÉCTRICO-->
+        <img src="{{ url_for('static', filename='img/electrico.jpg') }}" width="150px">
+        <h3 class="title">Eléctrico</h3>
+        <h4>Los cabales estan protegidos y canalizados</h4>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleelectrico1" type="radio" name="electrico1valor" value="cumple">
+            <label for="cumpleelectrico1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialelectrico1" type="radio" name="electrico1valor" value="parcial">
+            <label for="parcialelectrico1">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleelectrico1" type="radio" name="electrico1valor" value="nocumple">
+            <label for="nocumpleelectrico1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaelectrico1" type="radio" name="electrico1valor" value="noaplica">
+            <label for="noaplicaelectrico1">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="electricoobs1"></textarea>
+
+
+        <h4>Las instalaciones eléctricos estan protegidos</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleelectrico2" type="radio" name="electrico2valor" value="cumple">
+            <label for="cumpleelectrico2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialelectrico2" type="radio" name="electrico2valor" value="parcial">
+            <label for="parcialelectrico2">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleelectrico2" type="radio" name="electrico2valor" value="nocumple">
+            <label for="nocumpleelectrico2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaelectrico2" type="radio" name="electrico2valor" value="noaplica">
+            <label for="noaplicaelectrico2">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="electricoobs2"></textarea>
+
+
+        <h4>Los cables etsan amarrados de forma ordenada bajo el puesto de trabajo</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleelectrico3" type="radio" name="electrico3valor" value="cumple">
+            <label for="cumpleelectrico3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialelectrico3" type="radio" name="electrico3valor" value="parcial">
+            <label for="parcialelectrico3">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleelectrico3" type="radio" name="electrico3valor" value="nocumple">
+            <label for="nocumpleelectrico3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaelectrico3" type="radio" name="electrico3valor" value="noaplica">
+            <label for="noaplicaelectrico3">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="electricoobs3"></textarea>
+
+
+         <h4>Todas las instalaciones eléctricas cuentan con swiches y tomacorrientes</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleelectrico4" type="radio" name="electrico4valor" value="cumple">
+            <label for="cumpleelectrico4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialelectrico4" type="radio" name="electrico4valor" value="parcial">
+            <label for="parcialelectrico4">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleelectrico4" type="radio" name="electrico4valor" value="nocumple">
+            <label for="nocumpleelectrico4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaelectrico4" type="radio" name="electrico4valor" value="noaplica">
+            <label for="noaplicaelectrico4">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="electricoobs4"></textarea>
+  {% endblock %}
+
+
+  {% block cargafisica %}
+   <!--Carga física-->
+        <img src="{{ url_for('static', filename='img/carga_fisica.jpg') }}" width="150px">
+        <h3 class="title">Carga Física</h3>
+        <h4>Se cuenta con descanso de pies en todos los puestos de trabajo que lo requieren</h4>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumplecargafisica1" type="radio" name="cargafisica1valor" value="cumple">
+            <label for="cumplecargafisica1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialcargafisica1" type="radio" name="cargafisica1valor" value="parcial">
+            <label for="parcialcargafisica1">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumplecargafisica1" type="radio" name="cargafisica1valor" value="nocumple">
+            <label for="nocumplecargafisica1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicacargafisica1" type="radio" name="cargafisica1valor" value="noaplica">
+            <label for="noaplicacargafisica1">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="cargafisicaobs1"></textarea>
+
+
+        <h4>Las sillas (Rodacinas, cojineria, sistemas mecanicos) se encuentran en buen estado</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumplecargafisica2" type="radio" name="cargafisica2valor" value="cumple">
+            <label for="cumplecargafisica2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialcargafisica2" type="radio" name="cargafisica2valor" value="parcial">
+            <label for="parcialcargafisica2">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumplecargafisica2" type="radio" name="cargafisica2valor" value="nocumple">
+            <label for="nocumplecargafisica2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicacargafisica2" type="radio" name="cargafisica2valor" value="noaplica">
+            <label for="noaplicacargafisica2">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="cargafisicaobs2"></textarea>
+
+
+        <h4>Los puestos de trabajo tienen el mouse y el teclado en una misma superficie</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumplecargafisica3" type="radio" name="cargafisica3valor" value="cumple">
+            <label for="cumplecargafisica3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialcargafisica3" type="radio" name="cargafisica3valor" value="parcial">
+            <label for="parcialcargafisica3">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumplecargafisica3" type="radio" name="cargafisica3valor" value="nocumple">
+            <label for="nocumplecargafisica3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicacargafisica3" type="radio" name="cargafisica3valor" value="noaplica">
+            <label for="noaplicacargafisica3">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="cargafisicaobs3"></textarea>
+
+
+         <h4>La superficie del escritorio permite apoyar desde el codo</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumplecargafisica4" type="radio" name="cargafisica4valor" value="cumple">
+            <label for="cumplecargafisica4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialcargafisica4" type="radio" name="cargafisica4valor" value="parcial">
+            <label for="parcialcargafisica4">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumplecargafisica4" type="radio" name="cargafisica4valor" value="nocumple">
+            <label for="nocumplecargafisica4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicacargafisica4" type="radio" name="cargafisica4valor" value="noaplica">
+            <label for="noaplicacargafisica4">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="cargafisicaobs4"></textarea>
+
+  {% endblock %}
+
+
+  {% block ordenyaseo %}
+   <!--Carga física-->
+        <img src="{{ url_for('static', filename='img/ordenyaseo.jpg') }}" width="150px">
+        <h3 class="title">Orden Y Aseo (Condiciónn Locativa)</h3>
+        <h4>Las oficinas estan libres de elementos almacenados debajo de escritorios y mesas</h4>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo1" type="radio" name="ordenyaseo1valor" value="cumple">
+            <label for="cumpleordenyaseo1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo1" type="radio" name="ordenyaseo1valor" value="parcial">
+            <label for="parcialordenyaseo1">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo1" type="radio" name="ordenyaseo1valor" value="nocumple">
+            <label for="nocumpleordenyaseo1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo1" type="radio" name="ordenyaseo1valor" value="noaplica">
+            <label for="noaplicaordenyaseo1">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs1"></textarea>
+
+
+        <h4>El escritorio o mesa de trabajo tiene solo los recursos necesarios, se ve libre de congestion o elementos repetidos o cargado de objetos personales, el escritorio esta libre de vasos, posillos vacios, residuos de comidas.</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo2" type="radio" name="ordenyaseo2valor" value="cumple">
+            <label for="cumpleordenyaseo2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo2" type="radio" name="ordenyaseo2valor" value="parcial">
+            <label for="parcialordenyaseo2">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo2" type="radio" name="ordenyaseo2valor" value="nocumple">
+            <label for="nocumpleordenyaseo2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo2" type="radio" name="ordenyaseo2valor" value="noaplica">
+            <label for="noaplicaordenyaseo2">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs2"></textarea>
+
+
+        <h4>Los equipos de computo estan limpios, en buen estado y ubicados en los sitios disponibles para su almacenamiento</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo3" type="radio" name="ordenyaseo3valor" value="cumple">
+            <label for="cumpleordenyaseo3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo3" type="radio" name="ordenyaseo3valor" value="parcial">
+            <label for="parcialordenyaseo3">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo3" type="radio" name="ordenyaseo3valor" value="nocumple">
+            <label for="nocumpleordenyaseo3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo3" type="radio" name="ordenyaseo3valor" value="noaplica">
+            <label for="noaplicaordenyaseo3">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs3"></textarea>
+
+
+         <h4>Las impresoras y fotocopiadoras estan limpias y en buen estado libre de congestion ubicadas de acuerdo a la necesidad</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo4" type="radio" name="ordenyaseo4valor" value="cumple">
+            <label for="cumpleordenyaseo4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo4" type="radio" name="ordenyaseo4valor" value="parcial">
+            <label for="parcialordenyaseo4">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo4" type="radio" name="ordenyaseo4valor" value="nocumple">
+            <label for="nocumpleordenyaseo4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo4" type="radio" name="ordenyaseo4valor" value="noaplica">
+            <label for="noaplicaordenyaseo4">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs4"></textarea>
+
+
+        <h4>Las impresoras y fotocopiadoras tienen solo los recursos necesarios y ordenados y se ve libre de congestion, publicidad actualizada</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo5" type="radio" name="ordenyaseo5valor" value="cumple">
+            <label for="cumpleordenyaseo5">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo5" type="radio" name="ordenyaseo5valor" value="parcial">
+            <label for="parcialordenyaseo5">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo5" type="radio" name="ordenyaseo5valor" value="nocumple">
+            <label for="nocumpleordenyaseo5">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo5" type="radio" name="ordenyaseo5valor" value="noaplica">
+            <label for="noaplicaordenyaseo5">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs5"></textarea>
+
+
+        <h4>La oficina esta libre de afiches, listas, papeles o cronogramas pagados en paredes. El espacio o tablero asignado para la informacion se actualiza y es estetico</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo6" type="radio" name="ordenyaseo6valor" value="cumple">
+            <label for="cumpleordenyaseo6">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo6" type="radio" name="ordenyaseo6valor" value="parcial">
+            <label for="parcialordenyaseo6">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo6" type="radio" name="ordenyaseo6valor" value="nocumple">
+            <label for="nocumpleordenyaseo6">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo6" type="radio" name="ordenyaseo6valor" value="noaplica">
+            <label for="noaplicaordenyaseo6">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs6"></textarea>
+
+
+        <h4>Los puestos de trabajo se encuentran debidamente aseados (incluye estantes, cajones,paredes, detras de mesas, cables,equipos)</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo7" type="radio" name="ordenyaseo7valor" value="cumple">
+            <label for="cumpleordenyaseo7">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo7" type="radio" name="ordenyaseo7valor" value="parcial">
+            <label for="parcialordenyaseo7">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo7" type="radio" name="ordenyaseo7valor" value="nocumple">
+            <label for="nocumpleordenyaseo7">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo7" type="radio" name="ordenyaseo7valor" value="noaplica">
+            <label for="noaplicaordenyaseo7">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs7"></textarea>
+
+
+        <h4>Los cajones se encuentran cerrados o ajustados</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo8" type="radio" name="ordenyaseo8valor" value="cumple">
+            <label for="cumpleordenyaseo8">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo8" type="radio" name="ordenyaseo8valor" value="parcial">
+            <label for="parcialordenyaseo8">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo8" type="radio" name="ordenyaseo8valor" value="nocumple">
+            <label for="nocumpleordenyaseo8">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo8" type="radio" name="ordenyaseo8valor" value="noaplica">
+            <label for="noaplicaordenyaseo8">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs8"></textarea>
+
+
+        <h4>Las sillas estan limpias y en buen estado</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo9" type="radio" name="ordenyaseo9valor" value="cumple">
+            <label for="cumpleordenyaseo9">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo9" type="radio" name="ordenyaseo9valor" value="parcial">
+            <label for="parcialordenyaseo9">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo9" type="radio" name="ordenyaseo9valor" value="nocumple">
+            <label for="nocumpleordenyaseo9">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo9" type="radio" name="ordenyaseo9valor" value="noaplica">
+            <label for="noaplicaordenyaseo9">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs9"></textarea>
+
+        <h4>Los pisos estan limpios y libres de regueros y obstaculos</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleordenyaseo10" type="radio" name="ordenyaseo10valor" value="cumple">
+            <label for="cumpleordenyaseo10">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialordenyaseo10" type="radio" name="ordenyaseo10valor" value="parcial">
+            <label for="parcialordenyaseo10">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleordenyaseo10" type="radio" name="ordenyaseo10valor" value="nocumple">
+            <label for="nocumpleordenyaseo10">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaordenyaseo10" type="radio" name="ordenyaseo10valor" value="noaplica">
+            <label for="noaplicaordenyaseo10">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="ordenyaseoobs10"></textarea>
+
+  {% endblock %}
+
+  {% block emergencias %}
+   <!--Carga física-->
+        <img src="{{ url_for('static', filename='img/emergencias.jpg') }}" width="150px">
+        <h3 class="title">Emergencias</h3>
+        <h4>Todas las areas cuientan con señalizacion de emergencias clara y visible (Extintores, salidas de emergencias rutas de evacuacio</h4>
+
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleemergencias1" type="radio" name="emergencias1valor" value="cumple">
+            <label for="cumpleemergencias1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialemergencias1" type="radio" name="emergencias1valor" value="parcial">
+            <label for="parcialemergencias1">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleemergencias1" type="radio" name="emergencias1valor" value="nocumple">
+            <label for="nocumpleemergencias1">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaemergencias1" type="radio" name="emergencias1valor" value="noaplica">
+            <label for="noaplicaemergencias1">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="emergenciasobs1"></textarea>
+
+
+        <h4>El area de los extintores esta libre de obgetos y obstáculos.</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleemergencias2" type="radio" name="emergencias2valor" value="cumple">
+            <label for="cumpleemergencias2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialemergencias2" type="radio" name="emergencias2valor" value="parcial">
+            <label for="parcialemergencias2">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleemergencias2" type="radio" name="emergencias2valor" value="nocumple">
+            <label for="nocumpleemergencias2">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaemergencias2" type="radio" name="emergencias2valor" value="noaplica">
+            <label for="noaplicaemergencias2">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="emergenciasobs2"></textarea>
+
+
+        <h4>Las vías de evacuacion estan despejadas</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleemergencias3" type="radio" name="emergencias3valor" value="cumple">
+            <label for="cumpleemergencias3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialemergencias3" type="radio" name="emergencias3valor" value="parcial">
+            <label for="parcialemergencias3">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleemergencias3" type="radio" name="emergencias3valor" value="nocumple">
+            <label for="nocumpleemergencias3">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaemergencias3" type="radio" name="emergencias3valor" value="noaplica">
+            <label for="noaplicaemergencias3">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="emergenciasobs3"></textarea>
+
+
+         <h4>Los empleados identifican el procedimiento de notificacion de emergencia.</h4>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input id="cumpleemergencias4" type="radio" name="emergencias4valor" value="cumple">
+            <label for="cumpleemergencias4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="parcialemergencias4" type="radio" name="emergencias4valor" value="parcial">
+            <label for="parcialemergencias4">Cumple Parcial</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="nocumpleemergencias4" type="radio" name="emergencias4valor" value="nocumple">
+            <label for="nocumpleemergencias4">No cumple</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+          &nbsp;
+          <label class="form-check-label">
+            <input id="noaplicaemergencias4" type="radio" name="emergencias4valor" value="noaplica">
+            <label for="noaplicaemergencias4">No aplica</label>
+            <span class="form-radio-sign">
+              <span class="radio"></span>
+            </span>
+          </label>
+        </div>
+        <br>
+        Observaciones:
+        <textarea class="form-control" id="emergenciasobs4"></textarea>
+
+  <button type="button" onclick="add();">Save</button>
+  {% endblock %}
+

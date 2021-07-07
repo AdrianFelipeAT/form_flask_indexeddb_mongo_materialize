@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html manifest="{{ url_for('manifest') }}">
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='function.js') }}"></script>
+        <script src="{{ url_for('static', filename='funciones.js') }}"></script>
+        <title>IndexedDB: Local Database with HTML5</title>
+        <script type="text/javascript">
+            var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+            var dataBase = null;
+            
+            function validar_conexion(){
+                if(navigator.onLine){
+                  return true;
+                 } else {
+                  return false;
+                 }
+            }
+
+            function ajax_login(datos){
+                $.ajax({
+                    // la URL para la petición
+                    url : '/users',
+
+                    // la información a enviar
+                    // (también es posible utilizar una cadena de datos)
+                    data : datos,
+
+                    // especifica si será una petición POST o GET
+                    type : 'POST',
+
+                    // el tipo de información que se espera de respuesta
+                    dataType : 'json',
+
+                    // código a ejecutar si la petición es satisfactoria;
+                    // la respuesta es pasada como argumento a la función
+                    success : function(json) {
+                        $('<h1/>').text(json.title).appendTo('body');
+                        $('<div class="content"/>')
+                            .html(json.html).appendTo('body');
+                    },
+
+                    // código a ejecutar si la petición falla;
+                    // son pasados como argumentos a la función
+                    // el objeto de la petición en crudo y código de estatus de la petición
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+
+                    // código a ejecutar sin importar si la petición falló o no
+                    complete : function(xhr, status) {
+                        //alert('Petición realizada');
+                    }
+                });
+            }
+
+
+            function enviar(datos){
+                //algo = load(datos)
+                event.preventDefault();
+                ajax_login(datos);
+            }
+
+            function fechaActual(){
+                var hoy = new Date();
+                var fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
+                var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+                var fechaYHora = fecha + ' ' + hora;
+                return fechaYHora;
+            }
+
+
+            function startDB() {
+                
+                dataBase = indexedDB.open("object", 1);
+                
+                dataBase.onupgradeneeded = function (e) {
+                
+                    var active = dataBase.result;                    
+                    var object = active.createObjectStore('people', { keyPath : 'id', autoIncrement : true });
+                    object.createIndex('punto', 'id', { unique : false });
+                    
+                };
+                
+                dataBase.onsuccess = function (e) {
+                    loadAll();
+                };
+                
+                dataBase.onerror = function (e) {
+                    alert('Error loading database');
+                };
+
+            }
+            
+            function add() {
+                
+                var active = dataBase.result;
+                var data = active.transaction(["people"], "readwrite");
+                var object = data.objectStore("people");
+                fecha = fechaActual();
+                
+                var request = object.put({
+                    nombre : document.querySelector("#nombre").value,
+                    punto : document.querySelector("#punto").value,
+                    municipio : document.querySelector("#municipio").value.toLowerCase(),
+                    inspector : document.querySelector("#inspector").value,
+                    vendedor : document.querySelector("#vendedor").value,
+                    estado : "Sin Enviar",
+                    fecha : fecha
+                });
+                
+                request.onerror = function (e) {
+                    alert(request.error.municipio + '\n\n' + request.error.message);
+                };
+        
+                data.oncomplete = function (e) {
+                    document.querySelector('#nombre').value = '';
+                    document.querySelector('#punto').value = '';
+                    document.querySelector('#municipio').value = '';
+                    document.querySelector('#inspector').value = '';
+                    document.querySelector('#vendedor').value = '';
+                    loadAll();
+                };
+            }
+
+            function eliminar(id) {
+                var active = dataBase.result;
+                var data = active.transaction(["people"], "readwrite");
+                var object = data.objectStore("people");
+                
+                var request = object.delete(parseInt(id));
+                
+                request.onsuccess = function () {
+                    
+
+                    loadAll();
+                    
+                };
+                
+            }
+            
+            function load(id) {
+                var conexion = validar_conexion();
+                if(conexion){
+                    var active = dataBase.result;
+                    var data = active.transaction(["people"], "readwrite");
+                    var object = data.objectStore("people");
+                    
+                    var request = object.get(parseInt(id));
+                    
+                    request.onsuccess = function () {
+                        
+
+                        var result = request.result;
+                        
+                        if (result !== undefined) {
+                            let objeto = {
+                                id: id,
+                                estado: "ENVIADO",
+                                inspector: result.inspector,
+                                municipio: result.municipio,
+                                punto: result.punto,
+                                vendedor: result.vendedor,
+                                fecha: fechaActual()
+
+                              };
+                            var requests = object.put(objeto); //request a put/update
+                            enviar(objeto)
+                            loadAll();
+                        }
+                    };
+                }else{
+                    alert("Aún no tienes conexión para enviar los datos")
+                }
+                
+            }
+            
+            function loadByDni(dni) {
+                
+                var active = dataBase.result;
+                var data = active.transaction(["people"], "readonly");
+                var object = data.objectStore("people");
+                var index = object.index("botiquin");
+                
+                var request = index.get(String(dni));
+                
+                request.onsuccess = function () {
+                    
+                    var result = request.result;
+                    
+                    if (result !== undefined) {
+                        alert("ID: " + result.id + "\n\
+                        DNI: " + result.dni + "\n\
+                        Name: " + result.name + "\n\
+                        Surname: " + result.surname);
+                    }
+                };
+                
+            }
+            
+            function loadAll() {
+                
+                var active = dataBase.result;
+                var data = active.transaction(["people"], "readonly");
+                var object = data.objectStore("people");
+                
+                var elements = [];
+                
+                object.openCursor().onsuccess = function (e) {
+                    
+                    var result = e.target.result;
+                    
+                    if (result === null) {
+                        return;
+                    }
+                    
+                    elements.push(result.value);
+                    result.continue();
+                    
+                };
+                
+                data.oncomplete = function() {
+                    
+                    var outerHTML = '';
+                    
+
+
+                    for (var key in elements) {
+
+                        
+                        outerHTML += '\n\
+                        <tr>\n\
+                            <td>' + elements[key].id + '</td>\n\
+                            <td> Oficina </td>\n\
+                            <td>' + elements[key].punto + '</td>\n\
+                            <td>' + elements[key].municipio + '</td>\n\
+                            <td>' + elements[key].inspector + '</td>\n\
+                            <td>' + elements[key].vendedor + '</td>\n\
+                            <td>' + elements[key].fecha + '</td>\n\
+                            <td>' + elements[key].estado + '</td>\n\
+                            ';
+                            if (elements[key].estado != "ENVIADO") {
+                                outerHTML += '<td><button type="button" onclick="load(' + elements[key].id + ');">Enviar</button>\n\
+                                <button type="button" onclick="eliminar(' + elements[key].id + ');">Eliminar</button>\n\
+                                </td>\n\
+                                </tr>'; 
+                            }else{
+                                outerHTML += '<td><button type="button" onclick="#" disabled>Enviar</button>\n\
+                                <button type="button" onclick="eliminar(' + elements[key].id + ');">Eliminar</button>\n\
+                                </td>\n\
+                                </tr>'; 
+                            }                       
+                    }
+                    
+                    elements = [];
+                    document.querySelector("#elementsList").innerHTML = outerHTML;
+                };
+                
+            }
+            
+            /*function loadAllByName() {
+                
+                var active = dataBase.result;
+                var data = active.transaction(["people"], "readonly");
+                var object = data.objectStore("people");
+                var index = object.index('by_punto');
+                
+                var elements = [];
+                
+                index.openCursor().onsuccess = function (e) {
+                    
+                    var result = e.target.result;
+                    
+                    if (result === null) {
+                        return;
+                    }
+                    
+                    elements.push(result.value);
+                    result.continue();
+                    
+                };
+                
+                data.oncomplete = function() {
+                    
+                    var outerHTML = '';
+                    
+                    for (var key in elements) {
+                        
+                        outerHTML += '\n\
+                        <tr>\n\
+                            <td>' + elements[key].dni + '</td>\n\
+                            <td>' + elements[key].name + '</td>\n\
+                            <td>\n\
+                                <button type="button" onclick="load(' + elements[key].id + ');">Details</button>\n\
+                                <button type="button" onclick="loadByDni(' + elements[key].dni + ');">Details DNI</button>\n\
+                            </td>\n\
+                        </tr>';                        
+                    }
+                    
+                    elements = [];
+                    document.querySelector("#elementsList").innerHTML = outerHTML;
+                };
+
+
+                
+
+                
+                
+            }*/
+
+        </script>
+    </head>
+    <body onload="startDB();">
+        <input type="text" id="punto" placeholder="Ingresa el punto de venta" />
+        <input type="text" id="municipio" placeholder="Municipio" />
+        <input type="text" id="inspector" placeholder="Tu nombre" />
+        <input type="text" id="vendedor" placeholder="Nombre del vendedor" />
+        <button type="button" onclick="add();">Save</button>
+        <hr />
+        <div id="elements">
+            <table>
+                <caption>Persons</caption>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tipo Formulario</th>
+                        <th>Punto de venta</th>
+                        <th>Municipio</th>
+                        <th>Inspector</th>
+                        <th>Vendedor</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="elementsList">
+                    <tr>
+                        <td colspan="3">Not elements to show</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

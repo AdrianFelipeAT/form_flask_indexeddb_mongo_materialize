@@ -1,0 +1,36 @@
+{% extends 'base/base_sincronizar.html' %}
+
+
+{% block resumen %}
+<div class="card-body ">
+    <br>
+    <script type="text/javascript">
+      var dataBase = null;
+      loadAll();
+    </script>
+
+
+    <div id="elements">
+      <table class="table">
+          <caption>Persons</caption>
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Tipo Formulario</th>
+                  <th>Punto de venta</th>
+                  <th>Municipio</th>
+                  <th>Inspector</th>
+                  <th>Vendedor</th>
+                  <th>Fecha</th>
+                  <th>Estado</th>
+              </tr>
+          </thead>
+          <tbody id="elementsList">
+              <tr>
+                  <td colspan="3">Not elements to show</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+    </div>
+{% endblock %}
