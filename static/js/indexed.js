@@ -305,6 +305,7 @@ function add() {
         municipio : document.querySelector("#municipio").value.toLowerCase(),
         inspector : document.querySelector("#inspector").value, 
         vendedor : document.querySelector("#vendedor").value,
+        tipo_form: "oficinas",
         estado : "Sin Enviar",
         fecha : fecha,
         //Iluminaciòn
@@ -437,9 +438,11 @@ function load(id) {
             
 
             var result = request.result;
+            console.log(result);
             
             if (result !== undefined) {
                 let objeto = {
+                    // Inicial
                     id: id,
                     estado: "ENVIADO",
                     inspector: result.inspector,
@@ -447,12 +450,20 @@ function load(id) {
                     punto: result.punto,
                     vendedor: result.vendedor,
                     fecha: fechaActual(),
+
+                    // ---  Oficina  ---
+
+                    //ILuminación
                     iluminacion_cumplimiento : result.iluminacion_cumplimiento,
                     iluminacion_observacion : result.iluminacion_observacion,
+
+                    //Ruido
                     ruido_cumplimiento : result.ruido_cumplimiento,
                     ruido_observacion : result.ruido_observacion,
                     mecanico_cumplimiento : result.mecanico_cumplimiento,
                     mecanico_observacion : result.mecanico_observacion,
+
+                    //Eléctrico
                     electrico_cumplimiento1 : result.electrico_cumplimiento1,
                     electrico_observacion1 : result.electrico_observacion1,
                     electrico_cumplimiento2 : result.electrico_cumplimiento2,
@@ -461,6 +472,8 @@ function load(id) {
                     electrico_observacion3 : result.electrico_observacion3,
                     electrico_cumplimiento4 : result.electrico_cumplimiento4,
                     electrico_observacion4 : result.electrico_observacion4,
+
+                    //Carga Física
                     carga_fisica_cumplimiento1 : result.carga_fisica_cumplimiento1,
                     carga_fisica_observacion1 : result.carga_fisica_observacion1,
                     carga_fisica_cumplimiento2 : result.carga_fisica_cumplimiento2,
@@ -469,6 +482,8 @@ function load(id) {
                     carga_fisica_observacion3 : result.carga_fisica_observacion3,
                     carga_fisica_cumplimiento4: result.carga_fisica_cumplimiento4,
                     carga_fisica_observacion4 : result.carga_fisica_observacion4,
+
+                    //Orden y aseo
                     ordenyaseo_cumplimiento1 : result.ordenyaseo_cumplimiento1,
                     ordenyaseo_observacion1 : result.ordenyaseo_observacion1,
                     ordenyaseo_cumplimiento2 : result.ordenyaseo_cumplimiento2,
@@ -489,6 +504,8 @@ function load(id) {
                     ordenyaseo_observacion9 : result.ordenyaseo_observacion9,
                     ordenyaseo_cumplimiento10 : result.ordenyaseo_cumplimiento10,
                     ordenyaseo_observacion10 : result.ordenyaseo_observacion10,
+
+                    //Emergencias
                     emergencias_cumplimiento1 : result.emergencias_cumplimiento1,
                     emergencias_observacion1 : result.emergencias_observacion1,
                     emergencias_cumplimiento2 : result.emergencias_cumplimiento2,
@@ -496,8 +513,74 @@ function load(id) {
                     emergencias_cumplimiento3 : result.emergencias_cumplimiento3,
                     emergencias_observacion3 : result.emergencias_observacion3,
                     emergencias_cumplimiento4 : result.emergencias_cumplimiento4,
-                    emergencias_observacion4 : result.emergencias_observacion4
+                    emergencias_observacion4 : result.emergencias_observacion4,
 
+                    // ---   Primeros Auxilios   ---
+                    //Baja Lenguas
+                    bajalenguasna : result.bajalenguasna ,
+                    bajalenguascantidad : result.bajalenguascantidad ,
+                    bajalenguasvencimiento : result.bajalenguasvencimiento ,
+                    bajalenguasobs : result.bajalenguasobs ,
+
+                    //Curas
+                    curasna : result.curasna ,
+                    curascantidad : result.curascantidad ,
+                    curasvencimiento : result.curasvencimiento ,
+                    curasobs : result.curasobs ,
+
+                    //Gasa precortada
+                    gasana : result.gasana ,
+                    gasacantidad : result.gasacantidad ,
+                    gasavencimiento : result.gasavencimiento ,
+                    gasaobs : result.gasaobs ,
+
+                    //Micropore
+                    microporena : result.microporena ,
+                    microporecantidad : result.microporecantidad ,
+                    microporevencimiento : result.microporevencimiento ,
+                    microporeobs : result.microporeobs ,
+
+                    //Tohalla Higienica
+                    tohallana : result.tohallana ,
+                    tohallacantidad : result.tohallacantidad ,
+                    tohallavencimiento : result.tohallavencimiento ,
+                    tohallaobs : result.tohallaobs ,
+
+                    //Vendas en rollo
+                    vendana : result.vendana ,
+                    vendacantidad : result.vendacantidad ,
+                    vendavencimiento : result.vendavencimiento ,
+                    vendaobs : result.vendaobs ,
+
+                    //Tapa bocas
+                    tapabocasna : result.tapabocasna ,
+                    tapabocascantidad : result.tapabocascantidad ,
+                    tapabocasvencimiento : result.tapabocasvencimiento ,
+                    tapabocasobs : result.tapabocasobs ,
+
+                    //Tijeras
+                    tijerasna : result.tijerasna ,
+                    tijerascantidad : result.tijerascantidad ,
+                    tijerasvencimiento : result.tijerasvencimiento ,
+                    tijerasobs : result.tijerasobs ,
+
+                    //Guantes de latex
+                    guantesna : result.guantesna ,
+                    guantescantidad : result.guantescantidad ,
+                    guantesvencimiento : result.guantesvencimiento ,
+                    guantesobs : result.guantesobs ,
+                    
+                    //Yodopodidona
+                    yodopodidonana : result.yodopodidonana ,
+                    yodopodidonacantidad : result.yodopodidonacantidad ,
+                    yodopodidonavencimiento : result.yodopodidonavencimiento ,
+                    yodopodidonaobs : result.yodopodidonaobs ,
+
+                    //Solución Salina
+                    solucionna : result.solucionna ,
+                    solucioncantidad : result.solucioncantidad ,
+                    solucionvencimiento : result.solucionvencimiento ,
+                    solucionobs : result.solucionobs
                   };
                 var requests = object.put(objeto); //request a put/update
                 enviar(objeto)
@@ -510,30 +593,8 @@ function load(id) {
     
 }
 
-function loadByDni(dni) {
-    
-    var active = dataBase.result;
-    var data = active.transaction(["inspeccion"], "readonly");
-    var object = data.objectStore("inspeccion");
-    var index = object.index("botiquin");
-    
-    var request = index.get(String(dni));
-    
-    request.onsuccess = function () {
-        
-        var result = request.result;
-        
-        if (result !== undefined) {
-            alert("ID: " + result.id + "\n\
-            DNI: " + result.dni + "\n\
-            Name: " + result.name + "\n\
-            Surname: " + result.surname);
-        }
-    };
-    
-}
-
 function loadAll() {
+    
     var active = dataBase.result;
     var data = active.transaction(["inspeccion"], "readonly");
     var object = data.objectStore("inspeccion");
@@ -591,5 +652,112 @@ function loadAll() {
         document.querySelector("#elementsList").innerHTML = outerHTML;
     };
     
+}
+
+function addPrimerosAuxilios() {
+    
+    var active = dataBase.result;
+    var data = active.transaction(["inspeccion"], "readwrite");
+    var object = data.objectStore("inspeccion");
+    fecha = fechaActual();
+
+    var request = object.put({
+        //Inicial
+        inspector : document.querySelector("#inspectorpa").value, 
+        punto : document.querySelector("#puntopa").value,
+        municipio : document.querySelector("#municipiopa").value.toLowerCase(),
+        tipo_form: "Primeros auxilios",
+        estado : "Sin Enviar",
+        fecha : fecha,
+
+        //Baja Lenguas
+        bajalenguasna : document.querySelector("#na_bajalenguas").value,
+        bajalenguascantidad : document.querySelector("#cantidadbajalengua").value,
+        bajalenguasvencimiento : document.querySelector("#fechavencimientobajalengua").value,
+        bajalenguasobs : document.querySelector("#bajalenguasobs").value,
+
+        //Curas
+        curasna : document.querySelector("#na_curas").value,
+        curascantidad : document.querySelector("#cantidadcuras").value,
+        curasvencimiento : document.querySelector("#fechavencimientocuras").value,
+        curasobs : document.querySelector("#curasobs").value,
+
+        //Gasa precortada
+        gasana : document.querySelector("#na_gasa").value,
+        gasacantidad : document.querySelector("#cantidadgasa").value,
+        gasavencimiento : document.querySelector("#fechavencimientogasa").value,
+        gasaobs : document.querySelector("#gasaobs").value,
+
+        //Micropore
+        microporena : document.querySelector("#na_micropore").value,
+        microporecantidad : document.querySelector("#cantidadmicropore").value,
+        microporevencimiento : document.querySelector("#fechavencimientomicropore").value,
+        microporeobs : document.querySelector("#microporeobs").value,
+
+        //Tohalla Higienica
+        tohallana : document.querySelector("#na_tohalla").value,
+        tohallacantidad : document.querySelector("#cantidadtohalla").value,
+        tohallavencimiento : document.querySelector("#fechavencimientotohalla").value,
+        tohallaobs : document.querySelector("#tohallaobs").value,
+
+        //Vendas en rollo
+        vendana : document.querySelector("#na_venda").value,
+        vendacantidad : document.querySelector("#cantidadvenda").value,
+        vendavencimiento : document.querySelector("#fechavencimientovenda").value,
+        vendaobs : document.querySelector("#vendaobs").value,
+
+        //Tapa bocas
+        tapabocasna : document.querySelector("#na_tapabocas").value,
+        tapabocascantidad : document.querySelector("#cantidadtapabocas").value,
+        tapabocasvencimiento : document.querySelector("#fechavencimientotapabocas").value,
+        tapabocasobs : document.querySelector("#tapabocasobs").value,
+
+        //Tijeras
+        tijerasna : document.querySelector("#na_tijeras").value,
+        tijerascantidad : document.querySelector("#cantidadtijeras").value,
+        tijerasvencimiento : document.querySelector("#fechavencimientotijeras").value,
+        tijerasobs : document.querySelector("#tijerasobs").value,
+
+        //Guantes de latex
+        guantesna : document.querySelector("#na_guantes").value,
+        guantescantidad : document.querySelector("#cantidadguantes").value,
+        guantesvencimiento : document.querySelector("#fechavencimientoguantes").value,
+        guantesobs : document.querySelector("#guantesobs").value,
+        
+        //Yodopodidona
+        yodopodidonana : document.querySelector("#na_yodopodidona").value,
+        yodopodidonacantidad : document.querySelector("#cantidadyodopodidona").value,
+        yodopodidonavencimiento : document.querySelector("#fechavencimientoyodopodidona").value,
+        yodopodidonaobs : document.querySelector("#yodopodidonaobs").value,
+
+        //Solución Salina
+        solucionna : document.querySelector("#na_solucion").value,
+        solucioncantidad : document.querySelector("#cantidadsolucion").value,
+        solucionvencimiento : document.querySelector("#fechavencimientosolucion").value,
+        solucionobs : document.querySelector("#solucionobs").value
+
+
+    });
+    data.onsuccess = function () {
+        alert("Datos enviados correctamente!");
+    };
+    data.onerror = function (e) {
+        alert(request.error.municipio + '\n\n' + request.error.message);
+    };
+
+    data.oncomplete = function (e) {
+        document.querySelector('#puntopa').value = '';
+        document.querySelector('#municipiopa').value = '';
+        document.querySelector('#inspectorpa').value = '';
+        //loadAll();
+        //location.href = '/resumen';
+        //pop up
+        
+        if (confirm("¿Deseas diligenciar otro formulario?")) {
+            location.href = '/primerosauxilios';
+        } else {
+            location.href = '/resumen';
+        }
+    };
 }
        

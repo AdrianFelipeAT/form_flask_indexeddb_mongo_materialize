@@ -42,7 +42,19 @@ def resumen():
 
 @app.route("/reportes")
 def reportes():
-	return render_template("reportes.html")
+	import subprocess
+	from flask import Response
+	subprocess.call(r'mongoexport --db inspeccion --collection users --host=179.16.10.80 --port=27021 --type=csv --fieldFile "fields.txt" --out "export.csv"', shell=True)
+	
+	CSV_URL ="export.csv"
+	with open(CSV_URL) as fp:
+		csv = fp.read()
+	
+	return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition":
+                 "attachment; filename=reportepuntos.csv"})
 
 @app.route("/users", methods=['POST'])
 def create_users():
@@ -78,7 +90,7 @@ def manifest():
     return res
     
 
-app.run(host='localhost')
+#app.run(host='localhost')
 
-#if __name__ == "__main__":
-#	app.run(debug=True)
+if __name__ == "__main__":
+	app.run(debug=True)
