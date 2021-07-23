@@ -1,51 +1,62 @@
 {% extends 'base/base_menu.html' %}
 
 {% block menu %}
-<a href="/inspeccion">
-    <div class="container col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <img src="{{ url_for('static', filename='img/home.png') }}" width="100px">
-          <hr>
-          <h2>Inspeccion del punto</h2>
-        </div>
-      </div>
-    </div>
-  </a>
 
-  <a href="/primerosauxilios">
-    <div class="container col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <img src="{{ url_for('static', filename='img/bolsa-de-primeros-auxilios.png') }}" width="100px">
-          <hr>
-          <h2>Primeros Auxilios</h2>
-        </div>
-      </div>
-    </div>
-  </a>
-  
-  <a href="/resumen">
-    <div class="container col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <img src="{{ url_for('static', filename='img/cloud-computing.png') }}" width="100px">
-          <hr>
-          <h2>Sincronizar</h2>
-        </div>
-      </div>
-    </div>
-  </a>
+<!-- Inspección -->
+<div class="card card-pricing card-raised col-lg-2">
+  <div class="card-content">
+    <h3 class="category"><strong>Inspección del punto</strong></h3>
+    <div class="icon icon-rose">
+                <img src="{{ url_for('static', filename='img/home.png') }}" width="50px">
 
-  <a href="/reportes">
-    <div class="container col-lg-3">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <img src="{{ url_for('static', filename='img/business-report.png') }}" width="100px">
-          <hr>
-          <h2>Descargar reporte</h2>
-        </div>
-      </div>
     </div>
-  </a>
-  {% endblock %}
+    <p class="card-description descripcion">
+      <h5>Ingresa aquí para diligenciar el formulario integral del punto de venta</h5>
+    </p>
+    <a href="/inspeccion" class="btn btn-success btn-round">Diligenciar</a>
+  </div>
+</div>
+
+<!-- Primeros Auxilios -->
+<div class="card card-pricing card-raised col-lg-2">
+  <div class="card-content">
+    <h3 class="category"><strong>Primeros Auxilios</strong></h3>
+    <div class="icon icon-rose">
+      <img src="{{ url_for('static', filename='img/bolsa-de-primeros-auxilios.png') }}" width="50px"> 
+    </div>
+    <p class="card-description descripcion">
+      <h5>Ingresa aquí para diligenciar el formulario de primeros auxilios</h5>
+    </p>
+    <a href="/primerosauxilios" class="btn btn-success btn-round">Diligenciar</a>
+  </div>
+</div>
+
+<!-- Sincronización -->
+<div class="card card-pricing card-raised col-lg-2">
+  <div class="card-content">
+    <h3 class="category"><strong><br>Sincronizar</strong></h3>
+    <div class="icon icon-rose">
+      <img src="{{ url_for('static', filename='img/cloud-computing.png') }}" width="50px"> 
+    </div>
+    <p class="card-description descripcion">
+      <h5>Aquí están cargadas tus respuestas, sincroniza para para confirmar y enviar</h5>
+    </p>
+    <a href="/resumen" class="btn btn-success btn-round">Sincronizar</a>
+  </div>
+</div>
+
+<!-- Descargar reporte -->
+<div class="card card-pricing card-raised col-lg-2">
+  <div class="card-content">
+    <h3 class="category"><strong>Descargar Reporte</strong></h3>
+    <div class="icon icon-rose">
+      <img src="{{ url_for('static', filename='img/business-report.png') }}" width="50px"> 
+    </div>
+    <p class="card-description descripcion">
+      <h5>Ingresa aquí para diligenciar el formulario de primeros auxilios</h5>
+    </p>
+    <a href="/reportes" class="btn btn-success btn-round">Descargar</a>
+  </div>
+</div>
+
+{% endblock %}
