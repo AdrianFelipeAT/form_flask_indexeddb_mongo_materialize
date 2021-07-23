@@ -1,4 +1,5 @@
 punto.id
+punto.tipo_form
 punto.inspector
 punto.municipio 
 punto.punto

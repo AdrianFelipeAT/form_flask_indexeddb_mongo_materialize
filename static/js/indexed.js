@@ -445,6 +445,7 @@ function load(id) {
                     // Inicial
                     id: id,
                     estado: "ENVIADO",
+                    tipo_form: result.tipo_form,
                     inspector: result.inspector,
                     municipio: result.municipio,
                     punto: result.punto,
@@ -626,7 +627,7 @@ function loadAll() {
             outerHTML += '\n\
             <tr>\n\
                 <td>' + elements[key].id + '</td>\n\
-                <td> Oficina </td>\n\
+                <td>' + elements[key].tipo_form + '</td>\n\
                 <td>' + elements[key].punto + '</td>\n\
                 <td>' + elements[key].municipio + '</td>\n\
                 <td>' + elements[key].inspector + '</td>\n\
@@ -635,14 +636,14 @@ function loadAll() {
                 <td>' + elements[key].estado + '</td>\n\
                 ';
                 if (elements[key].estado != "ENVIADO") {
-                    outerHTML += '<td><button type="button" onclick="load(' + elements[key].id + ');">Enviar</button>\n\
-                    <button type="button" onclick="eliminar(' + elements[key].id + ');">Eliminar</button>\n\
+                    outerHTML += '<td><button type="button" class="btn btn-success btn-round" onclick="load(' + elements[key].id + ');">Enviar</button>\n\
+                    <button type="button" class="btn-danger btn-round" onclick="eliminar(' + elements[key].id + ');">Eliminar</button>\n\
                     </td>\n\
                     </tr>\n\
                     <table>'; 
                 }else{
-                    outerHTML += '<td><button type="button" onclick="#" disabled>Enviar</button>\n\
-                    <button type="button" onclick="eliminar(' + elements[key].id + ');">Eliminar</button>\n\
+                    outerHTML += '<td><button type="button" class="btn btn-success btn-round" onclick="#" disabled>Enviar</button>\n\
+                    <button type="button" class="btn-danger btn-round" onclick="eliminar(' + elements[key].id + ');">Eliminar</button>\n\
                     </td>\n\
                     </tr>'; 
                 }                       
