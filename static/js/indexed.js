@@ -106,10 +106,19 @@ function add() {
     }
 
     //Mecánico
+    
+    //Item 1
     var mecanicovalor=document.getElementsByName('mecanicovalor');
     for(i=0; i<mecanicovalor.length; i++){
         if(mecanicovalor[i].checked){
             var valormecanico=mecanicovalor[i].value;
+        }
+    }
+    //Item 2
+    var mecanico2valor=document.getElementsByName('mecanico2valor');
+    for(i=0; i<mecanico2valor.length; i++){
+        if(mecanico2valor[i].checked){
+            var valormecanico2=mecanico2valor[i].value;
         }
     }
 
@@ -136,14 +145,6 @@ function add() {
     for(i=0; i<electrico3valor.length; i++){
         if(electrico3valor[i].checked){
             var valorelectrico3=electrico3valor[i].value;
-        }
-    }
-
-    //Item 4
-    var electrico4valor=document.getElementsByName('electrico4valor');
-    for(i=0; i<electrico4valor.length; i++){
-        if(electrico4valor[i].checked){
-            var valorelectrico4=electrico4valor[i].value;
         }
     }
 
@@ -256,14 +257,6 @@ function add() {
         }
     }
 
-    //Item 10
-    var ordenyaseo10valor=document.getElementsByName('ordenyaseo10valor');
-    for(i=0; i<ordenyaseo10valor.length; i++){
-        if(ordenyaseo10valor[i].checked){
-            var valorordenyaseo10=ordenyaseo10valor[i].value;
-        }
-    }
-
 
     //Emergencias
 
@@ -317,6 +310,9 @@ function add() {
         //Mecánico
         mecanico_cumplimiento : valormecanico,
         mecanico_observacion : document.querySelector("#mecanicoobs").value,
+
+        mecanico_cumplimiento2 : valormecanico2,
+        mecanico_observacion2 : document.querySelector("#mecanicoobs2").value,
         //Eléctrico
         electrico_cumplimiento1 : valorelectrico1,
         electrico_observacion1 : document.querySelector("#electricoobs1").value,
@@ -327,8 +323,6 @@ function add() {
         electrico_cumplimiento3 : valorelectrico3,
         electrico_observacion3 : document.querySelector("#electricoobs3").value,
 
-        electrico_cumplimiento4 : valorelectrico4,
-        electrico_observacion4 : document.querySelector("#electricoobs4").value,
         //Carga Física
         carga_fisica_cumplimiento1 : valorcargafisica1,
         carga_fisica_observacion1 : document.querySelector("#cargafisicaobs1").value,
@@ -368,9 +362,7 @@ function add() {
 
         ordenyaseo_cumplimiento9 : valorordenyaseo9,
         ordenyaseo_observacion9 : document.querySelector("#ordenyaseoobs9").value,
-
-        ordenyaseo_cumplimiento10 : valorordenyaseo10,
-        ordenyaseo_observacion10 : document.querySelector("#ordenyaseoobs10").value,
+        
         //Emergencias
         emergencias_cumplimiento1 : valoremergencias1,
         emergencias_observacion1 : document.querySelector("#emergenciasobs1").value,
@@ -410,18 +402,18 @@ function add() {
 }
 
 function eliminar(id) {
-    var active = dataBase.result;
-    var data = active.transaction(["inspeccion"], "readwrite");
-    var object = data.objectStore("inspeccion");
-    
-    var request = object.delete(parseInt(id));
-    
-    request.onsuccess = function () {
+    if (window.confirm("¿Deseas eliminar?")) {
+        var active = dataBase.result;
+        var data = active.transaction(["inspeccion"], "readwrite");
+        var object = data.objectStore("inspeccion");
         
-
-        //loadAll();
+        var request = object.delete(parseInt(id));
         
-    };
+        request.onsuccess = function () {
+            loadAll();
+        };
+      }
+    
     
 }
 
@@ -461,8 +453,13 @@ function load(id) {
                     //Ruido
                     ruido_cumplimiento : result.ruido_cumplimiento,
                     ruido_observacion : result.ruido_observacion,
+
+                    //Mecánico
                     mecanico_cumplimiento : result.mecanico_cumplimiento,
                     mecanico_observacion : result.mecanico_observacion,
+
+                    mecanico_cumplimiento2 : result.mecanico_cumplimiento2,
+                    mecanico_observacion2 : result.mecanico_observacion2,
 
                     //Eléctrico
                     electrico_cumplimiento1 : result.electrico_cumplimiento1,
@@ -471,8 +468,6 @@ function load(id) {
                     electrico_observacion2 : result.electrico_observacion2,
                     electrico_cumplimiento3 : result.electrico_cumplimiento3,
                     electrico_observacion3 : result.electrico_observacion3,
-                    electrico_cumplimiento4 : result.electrico_cumplimiento4,
-                    electrico_observacion4 : result.electrico_observacion4,
 
                     //Carga Física
                     carga_fisica_cumplimiento1 : result.carga_fisica_cumplimiento1,
@@ -503,8 +498,6 @@ function load(id) {
                     ordenyaseo_observacion8 : result.ordenyaseo_observacion8,
                     ordenyaseo_cumplimiento9 : result.ordenyaseo_cumplimiento9,
                     ordenyaseo_observacion9 : result.ordenyaseo_observacion9,
-                    ordenyaseo_cumplimiento10 : result.ordenyaseo_cumplimiento10,
-                    ordenyaseo_observacion10 : result.ordenyaseo_observacion10,
 
                     //Emergencias
                     emergencias_cumplimiento1 : result.emergencias_cumplimiento1,
@@ -518,67 +511,56 @@ function load(id) {
 
                     // ---   Primeros Auxilios   ---
                     //Baja Lenguas
-                    bajalenguasna : result.bajalenguasna ,
                     bajalenguascantidad : result.bajalenguascantidad ,
                     bajalenguasvencimiento : result.bajalenguasvencimiento ,
                     bajalenguasobs : result.bajalenguasobs ,
 
                     //Curas
-                    curasna : result.curasna ,
                     curascantidad : result.curascantidad ,
                     curasvencimiento : result.curasvencimiento ,
                     curasobs : result.curasobs ,
 
                     //Gasa precortada
-                    gasana : result.gasana ,
                     gasacantidad : result.gasacantidad ,
                     gasavencimiento : result.gasavencimiento ,
                     gasaobs : result.gasaobs ,
 
                     //Micropore
-                    microporena : result.microporena ,
                     microporecantidad : result.microporecantidad ,
                     microporevencimiento : result.microporevencimiento ,
                     microporeobs : result.microporeobs ,
 
                     //Tohalla Higienica
-                    tohallana : result.tohallana ,
                     tohallacantidad : result.tohallacantidad ,
                     tohallavencimiento : result.tohallavencimiento ,
                     tohallaobs : result.tohallaobs ,
 
                     //Vendas en rollo
-                    vendana : result.vendana ,
                     vendacantidad : result.vendacantidad ,
                     vendavencimiento : result.vendavencimiento ,
                     vendaobs : result.vendaobs ,
 
                     //Tapa bocas
-                    tapabocasna : result.tapabocasna ,
                     tapabocascantidad : result.tapabocascantidad ,
                     tapabocasvencimiento : result.tapabocasvencimiento ,
                     tapabocasobs : result.tapabocasobs ,
 
                     //Tijeras
-                    tijerasna : result.tijerasna ,
                     tijerascantidad : result.tijerascantidad ,
                     tijerasvencimiento : result.tijerasvencimiento ,
                     tijerasobs : result.tijerasobs ,
 
                     //Guantes de latex
-                    guantesna : result.guantesna ,
                     guantescantidad : result.guantescantidad ,
                     guantesvencimiento : result.guantesvencimiento ,
                     guantesobs : result.guantesobs ,
                     
                     //Yodopodidona
-                    yodopodidonana : result.yodopodidonana ,
                     yodopodidonacantidad : result.yodopodidonacantidad ,
                     yodopodidonavencimiento : result.yodopodidonavencimiento ,
                     yodopodidonaobs : result.yodopodidonaobs ,
 
                     //Solución Salina
-                    solucionna : result.solucionna ,
                     solucioncantidad : result.solucioncantidad ,
                     solucionvencimiento : result.solucionvencimiento ,
                     solucionobs : result.solucionobs
@@ -631,8 +613,13 @@ function loadAll() {
                 <td>' + elements[key].punto + '</td>\n\
                 <td>' + elements[key].municipio + '</td>\n\
                 <td>' + elements[key].inspector + '</td>\n\
-                <td>' + elements[key].vendedor + '</td>\n\
-                <td>' + elements[key].fecha + '</td>\n\
+                ';
+                if (elements[key].vendedor != null) {
+                    outerHTML += '<td>' + elements[key].vendedor + '</td>';
+                }else{
+                    outerHTML += '<td></td>';
+                }
+                outerHTML += '<td>' + elements[key].fecha + '</td>\n\
                 <td>' + elements[key].estado + '</td>\n\
                 ';
                 if (elements[key].estado != "ENVIADO") {
@@ -672,67 +659,56 @@ function addPrimerosAuxilios() {
         fecha : fecha,
 
         //Baja Lenguas
-        bajalenguasna : document.querySelector("#na_bajalenguas").value,
         bajalenguascantidad : document.querySelector("#cantidadbajalengua").value,
         bajalenguasvencimiento : document.querySelector("#fechavencimientobajalengua").value,
         bajalenguasobs : document.querySelector("#bajalenguasobs").value,
 
         //Curas
-        curasna : document.querySelector("#na_curas").value,
         curascantidad : document.querySelector("#cantidadcuras").value,
         curasvencimiento : document.querySelector("#fechavencimientocuras").value,
         curasobs : document.querySelector("#curasobs").value,
 
         //Gasa precortada
-        gasana : document.querySelector("#na_gasa").value,
         gasacantidad : document.querySelector("#cantidadgasa").value,
         gasavencimiento : document.querySelector("#fechavencimientogasa").value,
         gasaobs : document.querySelector("#gasaobs").value,
 
         //Micropore
-        microporena : document.querySelector("#na_micropore").value,
         microporecantidad : document.querySelector("#cantidadmicropore").value,
         microporevencimiento : document.querySelector("#fechavencimientomicropore").value,
         microporeobs : document.querySelector("#microporeobs").value,
 
         //Tohalla Higienica
-        tohallana : document.querySelector("#na_tohalla").value,
         tohallacantidad : document.querySelector("#cantidadtohalla").value,
         tohallavencimiento : document.querySelector("#fechavencimientotohalla").value,
         tohallaobs : document.querySelector("#tohallaobs").value,
 
         //Vendas en rollo
-        vendana : document.querySelector("#na_venda").value,
         vendacantidad : document.querySelector("#cantidadvenda").value,
         vendavencimiento : document.querySelector("#fechavencimientovenda").value,
         vendaobs : document.querySelector("#vendaobs").value,
 
         //Tapa bocas
-        tapabocasna : document.querySelector("#na_tapabocas").value,
         tapabocascantidad : document.querySelector("#cantidadtapabocas").value,
         tapabocasvencimiento : document.querySelector("#fechavencimientotapabocas").value,
         tapabocasobs : document.querySelector("#tapabocasobs").value,
 
         //Tijeras
-        tijerasna : document.querySelector("#na_tijeras").value,
         tijerascantidad : document.querySelector("#cantidadtijeras").value,
         tijerasvencimiento : document.querySelector("#fechavencimientotijeras").value,
         tijerasobs : document.querySelector("#tijerasobs").value,
 
         //Guantes de latex
-        guantesna : document.querySelector("#na_guantes").value,
         guantescantidad : document.querySelector("#cantidadguantes").value,
         guantesvencimiento : document.querySelector("#fechavencimientoguantes").value,
         guantesobs : document.querySelector("#guantesobs").value,
         
         //Yodopodidona
-        yodopodidonana : document.querySelector("#na_yodopodidona").value,
         yodopodidonacantidad : document.querySelector("#cantidadyodopodidona").value,
         yodopodidonavencimiento : document.querySelector("#fechavencimientoyodopodidona").value,
         yodopodidonaobs : document.querySelector("#yodopodidonaobs").value,
 
         //Solución Salina
-        solucionna : document.querySelector("#na_solucion").value,
         solucioncantidad : document.querySelector("#cantidadsolucion").value,
         solucionvencimiento : document.querySelector("#fechavencimientosolucion").value,
         solucionobs : document.querySelector("#solucionobs").value
