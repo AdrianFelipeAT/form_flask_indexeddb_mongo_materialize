@@ -90,7 +90,7 @@ def manifest():
     return res
     
 
-#app.run(host='localhost')
+app.run(host='localhost')
 
 if __name__ == "__main__":
 	app.run(debug=True)

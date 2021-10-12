@@ -1,7 +1,7 @@
 punto.id
 punto.tipo_form
 punto.inspector
-punto.municipio 
+punto.municipio
 punto.punto
 punto.fecha
 punto.iluminacion_cumplimiento
